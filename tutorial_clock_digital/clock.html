@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Tutorial: Digital Clock</title>
+
+  <link href="clock.css" rel="stylesheet">
+</head>
+
+<body>
+  <time id="currtime"></time>
+  <script>
+    var currentTime = document.getElementById('currtime');
+
+    function updateTime() {
+      var timeNow = new Date(),
+        hh = timeNow.getHours(),
+        mm = timeNow.getMinutes(),
+        ss = timeNow.getSeconds(),
+        formatAMPM = (hh >= 12 ? "PM" : "AM");
+        hh = hh % 12 || 12;
+        currentTime.innerHTML = hh + " : " + zeroPadder(mm) + " : " + zeroPadder(ss) + " " + formatAMPM;
+      setTimeout(updateTime, 1000);
+    }
+
+    function zeroPadder(n) {
+      return (parseInt(n, 10) < 10 ? "0" : "") + n;
+    }
+
+    updateTime();
+  </script>
+</body>
+
+</html>
